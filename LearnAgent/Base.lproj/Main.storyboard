@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,14 +11,28 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="LearnAgent" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Ya1-zu-ER2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="xWF-zZ-uy6"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="cYR-KW-s5O"/>
+                    <view key="view" contentMode="scaleToFill" id="EXq-0H-BTb" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OyT-fM-Trl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="js0-q1-cyr">
+                        <barButtonItem key="leftBarButtonItem" systemItem="rewind" id="AUX-xY-mNU">
+                            <connections>
+                                <action selector="goToPreviousScene:" destination="BV1-FR-VrT" id="E9V-dY-TPV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="qDX-JT-x6F">
+                            <connections>
+                                <action selector="goToNextScene:" destination="BV1-FR-VrT" id="CUe-9v-BTa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
+            <point key="canvasLocation" x="1478" y="-51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1Od-TD-HPL">

@@ -11,25 +11,39 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    var sceneType: SceneType = .seek
 
+    @IBAction func goToNextScene(_ sender: UIBarButtonItem) {
+        if sceneType.rawValue + 1 >= SceneType.allCases.count{
+            sceneType = SceneType(rawValue: 0)!
+        }else{
+            sceneType = SceneType(rawValue: sceneType.rawValue + 1)!
+        }
+        select(type: sceneType)
+    }
+    @IBAction func goToPreviousScene(_ sender: UIBarButtonItem) {
+        if sceneType.rawValue - 1 < 0{
+            sceneType = SceneType(rawValue: SceneType.allCases.count - 1)!
+        }else{
+            sceneType = SceneType(rawValue: sceneType.rawValue - 1)!
+        }
+        select(type: sceneType)
+    }
+    
+    private func select(type: SceneType){
+        let scene = GameScene.loadSceen(type: type, size: CGSize(width: 800, height: 600))
+        scene.scaleMode = .aspectFit
+        if let view = self.view as! SKView? {
+            view.ignoresSiblingOrder = true
+            view.presentScene(scene)
+            self.navigationItem.title = scene.sceneName
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
+        select(type: sceneType)
     }
 
     override var shouldAutorotate: Bool {
