@@ -54,24 +54,24 @@ class AgentNode: SKNode, GKAgentDelegate {
         addChild(particles)
     }
     
-//    var color: SKColor{
-//        get{
-//            return triangleSharp.strokeColor
-//        }
-//        set{
-//            triangleSharp.strokeColor = newValue
-//        }
-//    }
-//    
-//    var setDrawsTrail: Bool = false{
-//        didSet{
-//            if setDrawsTrail{
-//                particles.particleBirthRate = defaultParticleRate
-//            }else{
-//                particles.particleBirthRate = 0
-//            }
-//        }
-//    }
+    var color: SKColor{
+        get{
+            return triangleSharp.strokeColor
+        }
+        set{
+            triangleSharp.strokeColor = newValue
+        }
+    }
+    
+    var setDrawsTrail: Bool = false{
+        didSet{
+            if setDrawsTrail{
+                particles.particleBirthRate = defaultParticleRate
+            }else{
+                particles.particleBirthRate = 0
+            }
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -80,6 +80,7 @@ class AgentNode: SKNode, GKAgentDelegate {
     func agentDidUpdate(_ agent: GKAgent) {
         if let agent = agent as? GKAgent2D{
             position = CGPoint(x: CGFloat(agent.position.x), y: CGFloat(agent.position.y))
+            zRotation = CGFloat(agent.rotation)
         }
     }
 }

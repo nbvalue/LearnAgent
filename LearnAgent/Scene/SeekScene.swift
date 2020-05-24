@@ -15,9 +15,7 @@ class SeekScene: GameScene {
     var seekGoal: GKGoal!
     
     override var sceneName: String{
-        get{
-            "SEEKING"
-        }
+        "SEEKING"
     }
     
     override func didMove(to view: SKView) {
